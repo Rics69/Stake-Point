@@ -42,7 +42,7 @@ const Page: React.FC = () => {
                     calculateCoefficient(
                         result === 'yes' ? totalYes : totalNo,
                         result === 'yes' ? totalNo : totalYes
-                    )
+                    ) as string
                 );
                 const winnings = userBet.amount * coefficient; // Выигрыш = ставка * коэффициент
                 setUserBalance(userBalance + winnings);
