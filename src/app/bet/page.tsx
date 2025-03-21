@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import {Button} from "antd";
 
 const Page: React.FC = () => {
     const [totalYes, setTotalYes] = useState<number>(0);
@@ -83,12 +84,8 @@ const Page: React.FC = () => {
                                 setUserBet({ ...userBet, amount: parseFloat(e.target.value) })
                             }
                         />
-                        <button onClick={() => handleBet('yes', userBet.amount)}>
-                            Поставить на &#34;Да&#34;
-                        </button>
-                        <button onClick={() => handleBet('no', userBet.amount)}>
-                            Поставить на &#34;Нет&#34;
-                        </button>
+                        <Button onClick={() => handleBet('yes', userBet.amount)} type="primary">Поставить на &#34;Да&#34;</Button>
+                        <Button style={{background: "red"}} onClick={() => handleBet('no', userBet.amount)} type="primary">Поставить на &#34;Нет&#34;</Button>
                     </div>
 
                     <div>

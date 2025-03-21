@@ -7,11 +7,8 @@ const todoSlice = createSlice({
         totalNo: 0
     },
     reducers: {
-        calculateCoefficient(state, action) {
-
-        }
     }
 });
 
-export const {calculateCoefficient} = todoSlice.actions;
+export const {} = todoSlice.actions;
 export default todoSlice.reducer;
