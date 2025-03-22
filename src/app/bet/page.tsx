@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import {Button} from "antd";
+import {Button, InputNumber, InputNumberProps} from "antd";
 
 const Page: React.FC = () => {
     const [totalYes, setTotalYes] = useState<number>(0);
@@ -10,6 +10,10 @@ const Page: React.FC = () => {
     const [userBet, setUserBet] = useState<{ amount: number; choice: 'yes' | 'no' }>({ amount: 0, choice: 'yes' });
     const [eventEnded, setEventEnded] = useState<boolean>(false);
     const [eventResult, setEventResult] = useState<'yes' | 'no' | null>(null);
+
+    const onChange: InputNumberProps['onChange'] = (value) => {
+        setUserBet({ ...userBet, amount: parseFloat(value) })
+    };
 
     // Функция для расчета коэффициента
     const calculateCoefficient = (total: number, totalOpposite: number) => {
@@ -75,14 +79,20 @@ const Page: React.FC = () => {
 
                     <div>
                         <h2>Сделать ставку:</h2>
-                        <input
-                            type="number"
-                            min="1"
-                            max={userBalance}
-                            value={userBet.amount || ''}
-                            onChange={(e) =>
-                                setUserBet({ ...userBet, amount: parseFloat(e.target.value) })
-                            }
+                        {/*<input*/}
+                        {/*    type="number"*/}
+                        {/*    min="1"*/}
+                        {/*    max={userBalance}*/}
+                        {/*    value={userBet.amount || ''}*/}
+                        {/*    onChange={(e) =>*/}
+                        {/*        setUserBet({ ...userBet, amount: parseFloat(e.target.value) })*/}
+                        {/*    }*/}
+                        {/*/>*/}
+                        <InputNumber<number>
+                            defaultValue={1000}
+                            formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                            parser={(value) => value?.replace(/\$\s?|(,*)/g, '') as unknown as number}
+                            onChange={onChange}
                         />
                         <Button onClick={() => handleBet('yes', userBet.amount)} type="primary">Поставить на &#34;Да&#34;</Button>
                         <Button style={{background: "red"}} onClick={() => handleBet('no', userBet.amount)} type="primary">Поставить на &#34;Нет&#34;</Button>
