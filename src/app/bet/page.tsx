@@ -60,7 +60,7 @@ const Page: React.FC = () => {
 
     return (
         <div>
-            <h1>Событ: Сделаю ли я этот сайт до конца?</h1>
+            <h1>Событие: Сделаю ли я этот сайт до конца?</h1>
             <p>Ваш баланс: {userBalance.toFixed(2)}</p>
 
             {!eventEnded ? (
